@@ -1,10 +1,14 @@
 {
   "name": "game-prototyper",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Helper library for prototyping games",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "cp src/*.js . ; uglifyjs prototyper2d.js -c -m --source-map prototyper2d.map -o prototyper2d.min.js",
+    "postpublish": "rm *.js *.map",
+    "precommit": "uglifyjs src/prototyper2d.js -c -m --source-map src/prototyper2d.map -o src/prototyper2d.min.js",
+    "commit": "git add . && git commit -m "
   },
   "repository": {
     "type": "git",
@@ -15,10 +19,13 @@
     "game",
     "canvas"
   ],
-  "author": "Adam Jakubowski",
+  "author": "Adam Jakubowski <ajakubo1@gmail.com> (http://thedimgames.com)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ajakubo1/game-prototyper/issues"
   },
-  "homepage": "https://github.com/ajakubo1/game-prototyper#readme"
+  "homepage": "https://github.com/ajakubo1/game-prototyper#readme",
+  "devDependencies": {
+    "uglifyjs": "^2.4.10"
+  }
 }

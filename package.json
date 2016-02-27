@@ -1,0 +1,24 @@
+{
+  "name": "game-prototyper",
+  "version": "0.0.1",
+  "description": "Helper library for prototyping games",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajakubo1/game-prototyper.git"
+  },
+  "keywords": [
+    "prototype",
+    "game",
+    "canvas"
+  ],
+  "author": "Adam Jakubowski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajakubo1/game-prototyper/issues"
+  },
+  "homepage": "https://github.com/ajakubo1/game-prototyper#readme"
+}

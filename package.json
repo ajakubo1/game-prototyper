@@ -1,7 +1,7 @@
 {
   "name": "game-prototyper",
   "version": "1.0.0",
-  "description": "Helper library for prototyping games",
+  "description": "Small library for prototyping games (can only create canvas objects with squares for now)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

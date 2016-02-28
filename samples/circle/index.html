@@ -6,7 +6,7 @@
 </head>
 <body style="background: black">
     <canvas id="canvas"></canvas>
-    <script src="../src/prototyper2d.js"></script>
+    <script src="../../src/prototyper2d.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var canvas = document.getElementById('canvas');
@@ -15,7 +15,8 @@
             var ctx = canvas.getContext('2d');
             
             setInterval(function () {
-                ctx.drawImage(PROTOTYPER.generateRectCanvas(), Math.random() * (canvas.width - 10), Math.random() * (canvas.height - 10));
+                ctx.drawImage(PROTOTYPER.generateCircleCanvas(), Math.random() * (canvas.width - 10), Math.random() * (canvas.height -
+                        10));
             }, 20);
         });
     </script>

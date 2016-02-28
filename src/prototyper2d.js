@@ -5,7 +5,7 @@
 
 var PROTOTYPER = {};
 
-PROTOTYPER.defaultDrawConfig = {
+PROTOTYPER.defaultDrawConfigRect = {
     x: 0,
     y: 0,
     width: 10,
@@ -15,22 +15,61 @@ PROTOTYPER.defaultDrawConfig = {
     fillStyle: "red"
 };
 
+PROTOTYPER.defaultDrawConfigCircle = {
+    x: 5,
+    y: 5,
+    width: 10,
+    height: 10,
+    radius: 5,
+    startAngle: 0,
+    endAngle: 360,
+    anticlockwise: false,
+    lineWidth: 1,
+    strokeStyle: "blue",
+    fillStyle: "red"
+};
+
 /**
  *
  * @param context
  * @param config
- * @param config.x
- * @param config.y
- * @param config.width
- * @param config.height
- * @param config.lineWidth
- * @param config.strokeStyle
- * @param config.fillStyle
+ * @param [config.x = 0]
+ * @param [config.y = 0]
+ * @param [config.width = 10]
+ * @param [config.height = 10]
+ * @param [config.lineWidth = 1]
+ * @param [config.strokeStyle = "blue"]
+ * @param [config.fillStyle = "red"]
  */
 PROTOTYPER.drawRect = function (context, config) {
-    config = config || this.defaultDrawConfig;
+    config = config || this.defaultDrawConfigRect;
     context.beginPath();
     context.rect(config.x, config.y, config.width, config.height);
+    context.closePath();
+    context.lineWidth = config.lineWidth;
+    context.strokeStyle = config.strokeStyle;
+    context.stroke();
+    context.fillStyle = config.fillStyle;
+    context.fill();
+};
+
+/**
+ *
+ * @param context
+ * @param config
+ * @param [config.x = 5]
+ * @param [config.y = 5]
+ * @param [config.radius = 5]
+ * @param [config.startAngle = 0]
+ * @param [config.endAngle = 360]
+ * @param [config.anticlockwise = false]
+ * @param [config.strokeStyle = "blue"]
+ * @param [config.fillStyle = "red"]
+ */
+PROTOTYPER.drawCircle = function (context, config) {
+    config = config || this.defaultDrawConfigCircle;
+    context.beginPath();
+    context.arc(config.x, config.y, config.radius, config.startAngle, config.endAngle, config.angiclockwise);
     context.closePath();
     context.lineWidth = config.lineWidth;
     context.strokeStyle = config.strokeStyle;
@@ -54,9 +93,9 @@ PROTOTYPER.generateCanvas = function (width, height) {
 
 /**
  *
- * @param [width = PROTOTYPER.defaultDrawConfig.width]
- * @param [height = PROTOTYPER.defaultDrawConfig.height]
- * @param [config = PROTOTYPER.defaultDrawConfig]
+ * @param [width = PROTOTYPER.defaultDrawConfigRect.width]
+ * @param [height = PROTOTYPER.defaultDrawConfigRect.height]
+ * @param [config = PROTOTYPER.defaultDrawConfigRect]
  * @param [config.x = 0]
  * @param [config.y = 0]
  * @param [config.width = 10]
@@ -67,10 +106,34 @@ PROTOTYPER.generateCanvas = function (width, height) {
  * @returns {Element}
  */
 PROTOTYPER.generateRectCanvas = function (width, height, config) {
-    config = config || this.defaultDrawConfig;
-    width = width || this.defaultDrawConfig.width;
-    height = height || this.defaultDrawConfig.height;
+    config = config || this.defaultDrawConfigRect;
+    width = width || this.defaultDrawConfigRect.width;
+    height = height || this.defaultDrawConfigRect.height;
     var canvas = this.generateCanvas(width, height);
     this.drawRect(canvas.getContext('2d'), config);
+    return canvas;
+};
+
+/**
+ *
+ * @param [width = PROTOTYPER.defaultDrawConfigCircle.width]
+ * @param [height = PROTOTYPER.defaultDrawConfigCircle.height]
+ * @param [config = PROTOTYPER.defaultDrawConfigCircle]
+ * @param [config.x = 5]
+ * @param [config.y = 5]
+ * @param [config.radius = 5]
+ * @param [config.startAngle = 0]
+ * @param [config.endAngle = 360]
+ * @param [config.anticlockwise = false]
+ * @param [config.strokeStyle = "blue"]
+ * @param [config.fillStyle = "red"]
+ * @returns {Element}
+ */
+PROTOTYPER.generateCircleCanvas = function (width, height, config) {
+    config = config || this.defaultDrawConfigCircle;
+    width = width || this.defaultDrawConfigCircle.width;
+    height = height || this.defaultDrawConfigCircle.height;
+    var canvas = this.generateCanvas(width, height);
+    this.drawCircle(canvas.getContext('2d'), config);
     return canvas;
 };
